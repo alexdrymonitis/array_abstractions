@@ -1,0 +1,75 @@
+#N canvas 230 68 899 548 10;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array1 20 float 2;
+#X coords 0 1 20 -1 200 140 1 0 0;
+#X restore 262 322 graph;
+#X obj 29 445 print found;
+#X obj 182 445 print done;
+#X msg 29 311 find \$1;
+#X msg 62 390 find_all \$1;
+#X floatatom 29 289 5 0 0 0 - - -, f 5;
+#X msg 42 334 find_again;
+#X floatatom 62 370 5 0 0 0 - - -, f 5;
+#X floatatom 309 76 5 0 0 0 - - -, f 5;
+#X msg 384 73 reset;
+#X obj 19 16 cnv 15 400 40 empty empty empty 20 12 0 14 -191765 -66577
+0;
+#X text 28 23 [array_find]: vanilla abstraction to find location of
+values of an array;
+#X text 28 100 First set some values to the array below ->;
+#X text 28 116 Just type numbers in the number atom and they will be
+stored sequentially in the array. Hit [reset( to set new values;
+#X text 26 146 [array_find] takes a value and outputs the index of
+the value. With the message "find" it will find the first occurance
+of that value in the array and it will stop. With the message "find_again"
+it will find the next occurance of the value (if there is any). Sending
+the message "find_again" will find the next occurance etc. The message
+"find_all" will find all occurances of a given value. A bang is output
+through the right outlet when the end of the array has been reached.
+;
+#N canvas 0 22 450 300 set_values 0;
+#X obj 99 171 tabwrite array1;
+#X obj 186 115 f;
+#X obj 216 115 + 1;
+#X msg 201 92 0;
+#X obj 99 123 t f f;
+#X obj 126 145 print array_find;
+#X obj 99 54 inlet;
+#X obj 201 47 inlet reset;
+#X obj 99 98 t f b;
+#X obj 201 69 route reset;
+#X connect 1 0 2 0;
+#X connect 1 0 0 1;
+#X connect 2 0 1 1;
+#X connect 3 0 1 1;
+#X connect 4 0 0 0;
+#X connect 4 1 5 0;
+#X connect 6 0 8 0;
+#X connect 7 0 9 0;
+#X connect 8 0 4 0;
+#X connect 8 1 1 0;
+#X connect 9 0 3 0;
+#X restore 309 95 pd set_values;
+#X text 515 34 Arguments: array name;
+#X text 516 100 Message "find_again" find the next occurance of the
+value provided by the message "find value".;
+#X text 515 52 Inlet:;
+#X text 516 70 Message "find value" (replace "value" with an actual
+value) to find the index of the given value.;
+#X text 516 131 Message "find_all value" finds all occurances of the
+given value;
+#X text 516 167 Outlets:;
+#X text 559 185 1st: index of the found value;
+#X text 561 200 2nd: bang when end of array reached;
+#X text 615 465 Written by Alexandros Drymonitis;
+#X text 259 292 Array has size 20;
+#X obj 29 423 array_find_extended array1;
+#X connect 3 0 26 0;
+#X connect 4 0 26 0;
+#X connect 5 0 3 0;
+#X connect 6 0 26 0;
+#X connect 7 0 4 0;
+#X connect 8 0 15 0;
+#X connect 9 0 15 1;
+#X connect 26 0 1 0;
+#X connect 26 1 2 0;
