@@ -1,0 +1,54 @@
+#N canvas 189 101 1006 566 10;
+#X obj 19 16 cnv 15 400 40 empty empty empty 20 12 0 14 -191765 -66577
+0;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array1 100 float 2;
+#X coords 0 1 100 -1 200 140 1;
+#X restore 37 211 graph;
+#X msg 46 372 bang;
+#X obj 46 523 print done;
+#X msg 66 396 45 78;
+#X msg 80 417 83 22;
+#X text 122 417 the order of values doesn't matter;
+#X floatatom 93 442 5 0 0 0 - - -, f 5;
+#X text 130 437 send a float to reverse the array from beginning up
+to that point;
+#X msg 247 477 array2;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array2 100 float 2;
+#X coords 0 1 100 -1 200 140 1;
+#X restore 252 211 graph;
+#X text 34 176 draw some values in the arrays;
+#X text 80 373 reverse the whole array;
+#X text 106 397 reverse a part of it;
+#X text 531 38 Arguments:;
+#X text 589 56 1st: array name;
+#X text 591 88 3rd: end point (optional);
+#X text 590 71 2nd: beginning point (optional);
+#X text 538 136 Inlets:;
+#X text 578 155 1st:;
+#X text 615 156 bang: reverses the range given via arguments. if no
+arguments provided \, reverses the whole array;
+#X text 616 187 list: overrides 2nd and 3rd arguments and reverses
+in the given range. order of maximum and minimum value doesn't matter
+;
+#X text 589 298 2nd: array name \, overrides first argument;
+#X text 555 345 Outlets: bang when done;
+#X text 688 500 Written by Alexandros Drymonitis;
+#X text 34 23 [array_reverse_extended]: extended abstraction for reversing
+arrays;
+#X text 37 68 [array_reverse_extended] can reverse a whole array or
+part of it. If it receives a bang it will reverse the whole array \,
+if it receives a list of two values \, it will reverse the array between
+these two indexes \, and if it receives a float it will reverse the
+array from the beginning till the float it received minus 1;
+#X obj 46 501 array_reverse_extended array1 0 99;
+#X text 616 235 float: reverses array from beginning up to the float
+minus one. ignores arguments or lists provided. if float is greater
+than the size of the array \, it is clipped to the array size;
+#X connect 2 0 27 0;
+#X connect 4 0 27 0;
+#X connect 5 0 27 0;
+#X connect 7 0 27 0;
+#X connect 9 0 27 1;
+#X connect 27 0 3 0;
