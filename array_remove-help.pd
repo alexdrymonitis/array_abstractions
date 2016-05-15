@@ -1,0 +1,40 @@
+#N canvas 741 353 968 548 10;
+#N canvas 0 50 450 278 (subpatch) 0;
+#X array array1 10 float 2;
+#X coords 0 1 10 -1 200 140 1 0 0;
+#X restore 34 246 graph;
+#X floatatom 35 452 5 0 0 0 - - -, f 5;
+#X obj 35 494 print done;
+#X obj 19 16 cnv 15 420 40 empty empty empty 20 12 0 14 -191765 -66577
+0;
+#X text 28 22 [array_remove]: vanilla abstraction which removes a value
+from an array based on its index;
+#X text 485 202 Outlet: bang when done;
+#X text 695 494 Written by Alexandros Drymonitis;
+#X obj 35 472 array_remove array1 shift_left;
+#X text 32 211 draw some values in the array (it's 10 elements long)
+;
+#X text 33 74 [array_remove] takes an index in its inlet and removes
+the value of that index from an array. Depending on its second argument
+\, it will then either shift all the values with higher indexes one
+place to the left \, or values with lower indexes one place to the
+right placing a 0 to the remaining (last or first) index \, or it will
+shift all the values with higher indexes to the left and resize the
+array by one element less (really removing the element). This last
+behavior is the default one.;
+#X text 486 35 Arguments:;
+#X text 545 53 1st: array name;
+#X text 550 73 2nd (optional): removal behavior. This should be either
+resize (default) \, shift_left \, or shift_right;
+#X text 485 133 Inlet:;
+#X text 530 152 1st: index to remove value from;
+#X text 537 167 2nd: removal behavior \, either resize \, shift_left
+\, or shift_right;
+#X msg 242 404 resize;
+#X msg 260 428 shift_left;
+#X msg 267 455 shift_right;
+#X connect 1 0 7 0;
+#X connect 7 0 2 0;
+#X connect 16 0 7 1;
+#X connect 17 0 7 1;
+#X connect 18 0 7 1;
