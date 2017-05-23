@@ -1,4 +1,4 @@
-#N canvas 296 259 1028 369 10;
+#N canvas 294 257 1028 369 10;
 #X symbolatom 29 233 0 0 0 0 - - -;
 #X floatatom 229 236 5 0 0 0 - - -, f 5;
 #X obj 29 302 array define my-window;
@@ -12,8 +12,6 @@ in FFT algorithms. For now four different window types are supported
 #X text 27 198 click on the [array] below to see the window;
 #X text 528 27 Arguments:;
 #X text 592 47 1st: array name to write window to;
-#X text 593 64 2nd: window type (hanning \, hamming \, blackman \,
-blackman-harris);
 #X text 594 96 3rd: window size;
 #X text 540 127 Inlets:;
 #X text 583 145 1st (symbol): window type (overrides second argument)
@@ -29,6 +27,8 @@ is provided);
 #X text 31 140 Note: if a window type that is not being supported is
 provided either as an argument or via the 1st inlet \, the array will
 be zeroed;
-#X connect 0 0 16 0;
-#X connect 1 0 16 1;
-#X connect 14 0 16 0;
+#X text 593 64 2nd: window type (hanning \, hamming \, blackman \,
+blackman-harris \, crown);
+#X connect 0 0 15 0;
+#X connect 1 0 15 1;
+#X connect 13 0 15 0;
